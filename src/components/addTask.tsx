@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { GoPlus } from "react-icons/go";
 import {
   Dialog,
   DialogContent,
@@ -55,13 +53,12 @@ export default function Todos() {
 
   return (
     <div className="mx-auto">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-md p-6">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <div id="dialogbutton" className="flex justify-center mb-4">
           <Dialog>
-            <DialogTrigger className="py-1 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 px-28">
+            <DialogTrigger className="py-[6px] rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 px-28">
               <div className="flex justify-center items-center font-medium ">
                 Add your todo
-                <GoPlus className="mt-2 w-5 h-5 mb-1" />
               </div>
             </DialogTrigger>
             <DialogContent className="rounded-md">
@@ -70,10 +67,10 @@ export default function Todos() {
                   Enter your task
                 </DialogTitle>
                 <DialogDescription>
-                  <Input
+                  <input
                     value={tasks}
                     onChange={(e) => setTasks(e.target.value)}
-                    className="mt-2"
+                    className="mt-2 flex-1 px-3 py-2 rounded-md border w-full"
                     placeholder="Add your task"
                   />
                 </DialogDescription>
@@ -88,9 +85,9 @@ export default function Todos() {
             </DialogContent>
           </Dialog>
         </div>
-        {todos.map((task, id) => (
+        {todos.map((task) => (
           <div
-            className="flex items-center justify-between bg-gray-50 border rounded-sm px-4 py-2 my-2"
+            className="flex items-center justify-between bg-gray-50 border rounded-md px-4 py-2 my-2"
             key={task.id}
           >
             <div className="flex items-center">
@@ -113,7 +110,7 @@ export default function Todos() {
                     </DialogTitle>
                     <DialogDescription>
                       {editingTaskId === task.id ? (
-                        <Input
+                        <input
                           type="text"
                           value={editedTaskText}
                           onChange={(e) => setEditedTaskText(e.target.value)}
@@ -122,7 +119,7 @@ export default function Todos() {
                               editingTask();
                             }
                           }}
-                          className="flex-1 px-3 py-2 rounded-md border "
+                          className="flex-1 px-3 py-2 rounded-md border w-full "
                         />
                       ) : (
                         <span className="flex-1 text-gray-800">
